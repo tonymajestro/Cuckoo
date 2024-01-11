@@ -1,0 +1,20 @@
+<header class="flex flex-col space-y-2 pb-6">
+  <a href="/">
+    <div class="bg-blue-600 pl-10 py-12 text-slate-100">
+        <h1 class="text-4xl">Majestro Cuckoo</h1>
+        <h2 class="text-lg">So long, it's been good to know you</h2>
+    </div>
+  </a>
+  <div class="flex flex-row space-x-2 pl-8">
+    {% if page.url == "/" %}
+      <a href="/"><button class="bg-blue-800 hover:bg-blue-900 rounded text-white py-2 px-4">Home</button></a>
+      <a href="/leaderboard"><button class="bg-blue-600 hover:bg-blue-700 rounded text-white py-2 px-4">Leaderboard</button></a>
+    {% elsif page.url == "/leaderboard/"  %}
+      <a href="/"><button class="bg-blue-600 hover:bg-blue-700 rounded text-white py-2 px-4">Home</button></a>
+      <a href="/leaderboard"><button class="bg-blue-800 hover:bg-blue-900 rounded text-white py-2 px-4">Leaderboard</button></a>
+    {% else %}
+      <a href="/"><button class="bg-blue-600 hover:bg-blue-700 rounded text-white py-2 px-4">Home</button></a>
+      <a href="/leaderboard"><button class="bg-blue-600 hover:bg-blue-700 rounded text-white py-2 px-4">Leaderboard</button></a>
+    {% endif %}
+  </div>
+</header>

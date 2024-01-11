@@ -1,0 +1,27 @@
+---
+layout: base
+title: "Majestro Cuckoo"
+---
+<h1 class="text-3xl text-slate-600">Recent games</h1>
+
+<div class="flex flex-col space-y-4 divide-y">
+  {% for game in collections.games %}
+    <section class="pt-4">
+      <div class="pb-2">
+        <a href="{{ game.url }}">
+          <h2 class="text-xl text-blue-600 hover:text-blue-800 underline">{{ game.data.title }}</h2>
+        </a>
+        <h3 class="text-sm text-slate-800 pb-1">{{ game.data.dateString }}</h3>
+      </div>
+      <ol class="list-decimal pl-6 text-slate-700">
+        {% for winner in game.data.winners %}
+          {% if forloop.first %}
+            <li><strong>Winner:</strong> {{ winner }}</li>
+          {% else %}
+            <li>{{ winner }}</li>
+          {% endif %}
+        {% endfor %}
+      </ol>
+    </section>
+  {% endfor %}
+</div>

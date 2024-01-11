@@ -1,0 +1,65 @@
+---
+layout: base
+title: Leaderboard
+scores:
+  - name: Sarah
+    wins: 1
+  - name: Anthony
+    wins: 1
+  - name: Tony
+    wins: 0
+  - name: Gina
+    wins: 0
+  - name: Anna
+    wins: 0
+  - name: Gargi
+    wins: 0
+  - name: Jacob
+    wins: 0
+  - name: Conner
+    wins: 0
+  - name: Maddy
+    wins: 0
+  - name: Joey
+    wins: 0
+  - name: Parker
+    wins: 0
+  - name: Phil
+    wins: 0
+  - name: Rosie
+    wins: 0
+  - name: Spencer
+    wins: 0
+  - name: Maria
+    wins: 0
+  - name: Emma
+    wins: 0
+  - name: Owen
+    wins: 0
+  - name: Abby
+    wins: 0
+  - name: Nana
+    wins: 0
+  - name: Nono
+    wins: 0
+---
+<h1 class="text-3xl text-neutral-700 pb-4">Leaderboard</h1>
+<table class="table-auto w-full max-w-md">
+  <thead class="bg-blue-600 text-white px-3">
+    <tr>
+      <th class="py-2 text-center">Place</abbr></th>
+      <th class="py-2 text-center">Name</th>
+      <th class="py-2 text-center">Wins</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for score in scores %}
+    <tr>
+      <td class="{% cycle 'bg-blue-100' 'bg-white' %} border-l border-b py-2 text-center">{{ forloop.index }}</td>
+      <td class="{% cycle 'names': 'bg-blue-100', 'bg-white' %} border-b py-2 text-center">{{ score.name }}</td>
+      <td class="{% cycle 'wins': 'bg-blue-100', 'bg-white' %} border-r border-b row-bg py-2 text-center">{{ score.wins }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
