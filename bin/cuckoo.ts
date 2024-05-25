@@ -7,7 +7,7 @@ const app = new cdk.App();
 new CuckooStack(app, 'CuckooStack', {
   domainName: 'majestrocuckoo.com',
   env: {
-    account: '968197501093',
-    region: 'us-east-1'
+    account: process.env.CDK_DEFAULT_ACCOUNT, 
+    region: process.env.CDK_DEFAULT_REGION 
   }
 });

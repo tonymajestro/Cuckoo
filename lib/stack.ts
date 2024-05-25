@@ -25,14 +25,7 @@ export class CuckooStack extends cdk.Stack {
       validation: acm.CertificateValidation.fromDns(hostedZone),
     });
 
-    // Allow navigation to subdirectories without including index.html paths
-    const rewriteIndexFunction = new cloudfront.Function(this, 'RewriteIndexFunction', {
-      code: cloudfront.FunctionCode.fromFile({
-        filePath: './lib/handler.js',
-      }),
-      runtime: cloudfront.FunctionRuntime.JS_2_0,
-    });
-
+    // Create Cloudfront Distribution and S3 bucket secured with OAC
     const distributionResources = new CloudFrontToS3(this, "CloudFrontToS3", {
       cloudFrontDistributionProps: {
         defaultBehavior: {
@@ -44,6 +37,13 @@ export class CuckooStack extends cdk.Stack {
       }
     });
 
+    // Allow navigation to subdirectories without including index.html paths
+    const rewriteIndexFunction = new cloudfront.Function(this, 'RewriteIndexFunction', {
+      code: cloudfront.FunctionCode.fromFile({
+        filePath: './lib/handler.js',
+      }),
+      runtime: cloudfront.FunctionRuntime.JS_2_0,
+    });
     distributionResources.cloudFrontWebDistribution.addBehavior("/*", new origins.S3Origin(distributionResources.s3Bucket!), {
       functionAssociations: [{
         function: rewriteIndexFunction,
@@ -53,10 +53,11 @@ export class CuckooStack extends cdk.Stack {
 
     // Deploy static site to S3
     const deployment = new s3deploy.BucketDeployment(this, 'BucketDeploy', {
-      sources: [s3deploy.Source.asset('./bin/dist')],
+      sources: [s3deploy.Source.asset('./dist')],
       destinationBucket: distributionResources.s3Bucket!
     });
 
+    // Add Route53 alias records to map DNS name to CloudFront distribution
     this.updateHostedZone(distributionResources.cloudFrontWebDistribution, hostedZone);
   }
 

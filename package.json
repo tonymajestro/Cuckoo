@@ -8,7 +8,9 @@
     "build": "npm run build-11ty && npm run build-tw",
     "build-11ty": "npx @11ty/eleventy",
     "build-tw": "npx tailwindcss -i ./public/css/input.css -o ./dist/css/style.css",
-    "watch": "tsc -w",
+    "serve": "npm run serve-11ty & npm run serve-tw",
+    "serve-11ty": "npx @11ty/eleventy --serve",
+    "serve-tw": "npx tailwindcss -i ./public/css/input.css -o ./dist/css/style.css --watch",
     "cdk": "cdk",
     "precdk": "npm run build"
   },

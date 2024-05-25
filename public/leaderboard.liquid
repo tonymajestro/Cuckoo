@@ -4,52 +4,73 @@ title: Leaderboard
 scores:
   - name: Sarah
     wins: 1
+    games: 2
   - name: Anthony
     wins: 1
+    games: 2
   - name: Tony
     wins: 0
+    games: 2
   - name: Gina
     wins: 0
+    games: 1
   - name: Anna
     wins: 0
+    games: 1
   - name: Gargi
     wins: 0
+    games: 2
   - name: Jacob
     wins: 0
+    games: 1
   - name: Conner
     wins: 0
+    games: 1
   - name: Maddy
     wins: 0
+    games: 2
   - name: Joey
     wins: 0
+    games: 1
   - name: Parker
     wins: 0
+    games: 1
   - name: Phil
     wins: 0
+    games: 2
   - name: Rosie
     wins: 0
+    games: 2
   - name: Spencer
     wins: 0
+    games: 2
   - name: Maria
     wins: 0
+    games: 2
   - name: Emma
     wins: 0
+    games: 2
   - name: Owen
     wins: 0
+    games: 1
   - name: Abby
     wins: 0
+    games: 1
   - name: Nana
     wins: 0
+    games: 2
   - name: Nono
     wins: 0
+    games: 2
 ---
-<h1 class="text-3xl text-neutral-700 pb-4">Leaderboard</h1>
+<h1 class="text-3xl text-neutral-700 pb-6">Leaderboard</h1>
 <table class="table-auto w-full max-w-md">
   <thead class="bg-blue-600 text-white px-3">
     <tr>
       <th class="py-2 text-center">Place</abbr></th>
       <th class="py-2 text-center">Name</th>
       <th class="py-2 text-center">Wins</th>
+      <th class="py-2 text-center">Games</th>
     </tr>
   </thead>
   <tbody>
@@ -57,7 +78,8 @@ scores:
     <tr>
       <td class="{% cycle 'bg-blue-100' 'bg-white' %} border-l border-b py-2 text-center">{{ forloop.index }}</td>
       <td class="{% cycle 'names': 'bg-blue-100', 'bg-white' %} border-b py-2 text-center">{{ score.name }}</td>
-      <td class="{% cycle 'wins': 'bg-blue-100', 'bg-white' %} border-r border-b row-bg py-2 text-center">{{ score.wins }}</td>
+      <td class="{% cycle 'wins': 'bg-blue-100', 'bg-white' %} border-b row-bg py-2 text-center">{{ score.wins }}</td>
+      <td class="{% cycle 'games': 'bg-blue-100', 'bg-white' %} border-r border-b py-2 text-center">{{ score.games }}</td>
     </tr>
   {% endfor %}
   </tbody>
