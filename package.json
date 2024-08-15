@@ -6,6 +6,7 @@
   },
   "scripts": {
     "build": "npm run build-11ty && npm run build-tw",
+    "clean": "rm -rf dist",
     "build-11ty": "npx @11ty/eleventy",
     "build-tw": "npx tailwindcss -i ./public/css/input.css -o ./dist/css/style.css",
     "serve": "npm run serve-11ty & npm run serve-tw",
