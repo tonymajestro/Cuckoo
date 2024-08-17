@@ -1,0 +1,64 @@
+---
+title: "ScoreKeeper"
+players:
+  - Abby
+  - Anna
+  - Anthony
+  - Conner
+  - Emma
+  - Gargi
+  - Gina
+  - Jacob
+  - Joey
+  - Lorelei
+  - Maddy
+  - Maria
+  - Nana
+  - Nono
+  - Owen
+  - Parker
+  - Phil
+  - Rosie
+  - Sarah
+  - Spencer
+  - Tony
+---
+<!doctype html>
+<head>
+  <link rel="stylesheet" href="/css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title | default: "Majestro Cuckoo" }}</title>
+  <script src="/scripts/sortable.js"></script>
+  <script src="/scripts/scorekeeper.js"></script>
+</head>
+
+<body>
+  {% include "header" %}
+  <main class="px-8 pb-12 max-w-screen-lg">
+    <div class="flex flex-col space-y-8">
+      <h1 class="text-3xl text-neutral-700">Score Keeper</h1>
+
+      <div class="players flex flex-col space-y-4">
+      {% for player in players %}
+        <fieldset class="user-scores flex flex-row space-x-4 h-10">
+          <input class="user-name bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="player-{{ player }}" type="text" value="{{ player }}" disabled>
+
+          <div class="flex flex-row h-10 rounded-lg relative bg-transparent transition-all" draggable="true">
+            <button data-action="decrement" class="bg-blue-300 text-gray-600 hover:text-gray-600 hover:bg-blue-400 h-full w-10 rounded-l outline-none cursor-pointer">
+              <span class="m-auto text-2xl font-thin">−</span>
+            </button>
+            <span class="score bg-gray-300 font-semibold text-md w-10 flex items-center justify-center text-gray-700">0</span>
+            <button data-action="increment" class="bg-blue-300 text-gray-600 hover:text-gray-700 hover:bg-blue-400 h-full w-10 rounded-r cursor-pointer">
+              <span class="m-auto text-2xl font-thin">+</span>
+            </button>
+          </div>
+          <button data-action="delete" class="remove-user px-3 py-1 bg-red-300 text-gray-600 hover:text-gray-700 hover:bg-red-400 h-full w-10 rounded cursor-pointer flex items-center justify-center">
+            <span class="m-auto text-2xl font-thin pointer-events-none">x</span>
+          </button>
+        </fieldset>
+      {% endfor %}
+      </div>
+    </div>
+  </main>
+</body>
+</html>

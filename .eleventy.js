@@ -1,5 +1,6 @@
 module.exports = function(config) {
   config.addPassthroughCopy("public/images");
+  config.addPassthroughCopy("public/scripts");
 
   return {
     dir: {
