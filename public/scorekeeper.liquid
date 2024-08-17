@@ -42,13 +42,13 @@ players:
       <div class="players flex flex-col space-y-4">
       {% for player in players %}
         <fieldset class="user-scores flex flex-row space-x-4 h-10">
-          <input class="user-name bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="player-{{ player }}" type="text" value="{{ player }}" disabled>
+          <p class="user-name bg-gray-200 rounded w-full py-2 px-4 text-gray-700" id="player-{{ player }}" type="text">{{ player }}</p>
 
           <div class="flex flex-row h-10 rounded-lg relative bg-transparent transition-all" draggable="true">
             <button data-action="decrement" class="bg-blue-300 text-gray-600 hover:text-gray-600 hover:bg-blue-400 h-full w-10 rounded-l outline-none cursor-pointer">
               <span class="m-auto text-2xl font-thin">-</span>
             </button>
-            <span class="score bg-gray-300 font-semibold text-md w-10 flex items-center justify-center text-gray-700">0</span>
+            <span class="score bg-gray-200 font-semibold text-md w-10 flex items-center justify-center text-gray-700">0</span>
             <button data-action="increment" class="bg-blue-300 text-gray-600 hover:text-gray-700 hover:bg-blue-400 h-full w-10 rounded-r cursor-pointer">
               <span class="m-auto text-2xl font-thin">+</span>
             </button>
