@@ -51,6 +51,6 @@ window.onload = (event) => {
     btn.addEventListener("click", deleteUser)
   })
 
-  const players = document.querySelector(".players");
-  Sortable.create(players)
+  // const players = document.querySelector(".players");
+  // Sortable.create(players)
 };

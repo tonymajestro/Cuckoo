@@ -52,9 +52,11 @@ export class CuckooStack extends cdk.Stack {
     });
 
     // Deploy static site to S3
-    const deployment = new s3deploy.BucketDeployment(this, 'BucketDeploy', {
+    new s3deploy.BucketDeployment(this, 'BucketDeploy', {
       sources: [s3deploy.Source.asset('./dist')],
-      destinationBucket: distributionResources.s3Bucket!
+      destinationBucket: distributionResources.s3Bucket!,
+      distribution: distributionResources.cloudFrontWebDistribution,
+      distributionPaths: ['/*']
     });
 
     // Add Route53 alias records to map DNS name to CloudFront distribution
