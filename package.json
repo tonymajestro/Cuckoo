@@ -13,6 +13,7 @@
     "serve-11ty": "npx @11ty/eleventy --serve",
     "serve-tw": "npx tailwindcss -i ./public/css/input.css -o ./dist/css/style.css --watch",
     "cdk": "cdk",
+    "deploy": "cdk deploy",
     "precdk": "npm run build"
   },
   "devDependencies": {
