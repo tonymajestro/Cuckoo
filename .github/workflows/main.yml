@@ -16,7 +16,7 @@ permissions:
       id-token: write   # This is required for requesting the JWT
       contents: read    # This is required for actions/checkout
 jobs:
-  AssumeRoleAndCallIdentity:
+  DeployLatestSite:
     runs-on: ubuntu-latest
     steps:
       - name: Git clone the repository
@@ -36,4 +36,4 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
       - name: cdk deploy
         run: |
-          npm run cdk list
+          npm run deploy
