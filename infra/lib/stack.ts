@@ -9,7 +9,8 @@ import * as targets from "aws-cdk-lib/aws-route53-targets";
 import { CloudFrontToS3 } from '@aws-solutions-constructs/aws-cloudfront-s3';
 
 export interface CuckooStackProps extends cdk.StackProps {
-  domainName: string
+  domainName: string,
+  assetDir: string
 }
 
 export class CuckooStack extends cdk.Stack {
@@ -53,7 +54,7 @@ export class CuckooStack extends cdk.Stack {
 
     // Deploy static site to S3
     new s3deploy.BucketDeployment(this, 'BucketDeploy', {
-      sources: [s3deploy.Source.asset('./dist')],
+      sources: [s3deploy.Source.asset(props.assetDir)],
       destinationBucket: distributionResources.s3Bucket!,
       distribution: distributionResources.cloudFrontWebDistribution,
       distributionPaths: ['/*']

@@ -1,0 +1,19 @@
+---
+import Header from "../components/Header.astro";
+
+let { title } = Astro.props;
+---
+
+<!doctype html>
+<head>
+  <link rel="stylesheet" href="/css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+</head>
+
+<body>
+  <Header />
+  <main class="px-8 pb-12 max-w-screen-lg">
+    <slot />
+  </main>
+</body>

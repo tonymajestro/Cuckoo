@@ -1,0 +1,46 @@
+---
+import Base from "../layouts/Base.astro";
+import scores from "../leaderboard/leaderboard.json";
+---
+
+<Base title="Leaderboard">
+  <h1 class="text-3xl text-neutral-700 pb-6">Leaderboard</h1>
+  <table class="table-auto w-full max-w-md">
+    <thead class="bg-blue-600 text-white px-5">
+      <tr>
+        <th class="py-2 text-center">Place</th>
+        <th class="py-2 text-center">Name</th>
+        <th class="py-2 text-center">Wins</th>
+        <th class="py-2 text-center">Games</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        scores.map((score, index) => (
+          <tr>
+            <td
+              class={`${index % 2 == 0 ? "bg-blue-100" : "bg-white"} border-l border-b py-2 text-center`}
+            >
+              {index + 1}
+            </td>
+            <td
+              class={`${index % 2 == 0 ? "bg-blue-100" : "bg-white"} border-b py-2 text-center`}
+            >
+              {score.name}
+            </td>
+            <td
+              class={`${index % 2 == 0 ? "bg-blue-100" : "bg-white"} border-b row-bg py-2 text-center`}
+            >
+              {score.wins}
+            </td>
+            <td
+              class={`${index % 2 == 0 ? "bg-blue-100" : "bg-white"} border-r border-b py-2 text-center`}
+            >
+              {score.games}
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</Base>

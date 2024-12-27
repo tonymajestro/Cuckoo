@@ -1,0 +1,107 @@
+[
+  {
+    "name": "Anthony",
+    "wins": 1,
+    "games": 4
+  },
+  {
+    "name": "Sarah",
+    "wins": 1,
+    "games": 3
+  },
+  {
+    "name": "Jacob",
+    "wins": 1,
+    "games": 2
+  },
+  {
+    "name": "Parker",
+    "wins": 1,
+    "games": 2
+  },
+  {
+    "name": "Maddy",
+    "wins": 0,
+    "games": 4
+  },
+  {
+    "name": "Phil",
+    "wins": 0,
+    "games": 4
+  },
+  {
+    "name": "Rosie",
+    "wins": 0,
+    "games": 4
+  },
+  {
+    "name": "Spencer",
+    "wins": 0,
+    "games": 4
+  },
+  {
+    "name": "Maria",
+    "wins": 0,
+    "games": 4
+  },
+  {
+    "name": "Emma",
+    "wins": 0,
+    "games": 4
+  },
+  {
+    "name": "Nana",
+    "wins": 0,
+    "games": 4
+  },
+  {
+    "name": "Nono",
+    "wins": 0,
+    "games": 4
+  },
+  {
+    "name": "Tony",
+    "wins": 0,
+    "games": 3
+  },
+  {
+    "name": "Anna",
+    "wins": 0,
+    "games": 3
+  },
+  {
+    "name": "Conner",
+    "wins": 0,
+    "games": 3
+  },
+  {
+    "name": "Gina",
+    "wins": 0,
+    "games": 2
+  },
+  {
+    "name": "Gargi",
+    "wins": 0,
+    "games": 2
+  },
+  {
+    "name": "Joey",
+    "wins": 0,
+    "games": 2
+  },
+  {
+    "name": "Lorelei",
+    "wins": 0,
+    "games": 1
+  },
+  {
+    "name": "Abbey",
+    "wins": 0,
+    "games": 1
+  },
+  {
+    "name": "Owen",
+    "wins": 0,
+    "games": 1
+  }
+]
