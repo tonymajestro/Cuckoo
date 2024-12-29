@@ -29,6 +29,10 @@ jobs:
         working-directory: ./infra
         run: |
           npm ci
+      - name: Install astro
+        working-directory: ./astro
+        run: |
+          npm ci
       - name: Configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1.7.0
         with:
