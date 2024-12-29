@@ -36,7 +36,7 @@ jobs:
       - name: Configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1.7.0
         with:
-          role-to-assume: arn:aws:iam::968197501093:role/GitHubAction-AssumeRoleWithAction
+          role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
           role-session-name: GitHub_to_AWS_via_FederatedOIDC
           aws-region: ${{ env.AWS_REGION }}
       - name: build assets
@@ -46,4 +46,6 @@ jobs:
         working-directory: ./infra
         run: npm run deploygithub
       - name: Invalidate Cloudfront cache
-        run: aws cloudfront create-invalidation --distribution-id E1ZGQQT8CIXP3A --paths '/*'
+        env:
+          CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+        run: aws cloudfront create-invalidation --distribution-id "$CLOUDFRONT_DISTRIBUTION_ID" --paths "/*"
