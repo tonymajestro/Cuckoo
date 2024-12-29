@@ -1,12 +1,12 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
+import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
 import * as route53 from 'aws-cdk-lib/aws-route53';
 import * as origins from 'aws-cdk-lib/aws-cloudfront-origins';
 import * as acm from 'aws-cdk-lib/aws-certificatemanager';
 import * as targets from "aws-cdk-lib/aws-route53-targets";
-import { CloudFrontToS3 } from '@aws-solutions-constructs/aws-cloudfront-s3';
 
 export interface CuckooStackProps extends cdk.StackProps {
   domainName: string,
@@ -26,16 +26,21 @@ export class CuckooStack extends cdk.Stack {
       validation: acm.CertificateValidation.fromDns(hostedZone),
     });
 
-    // Create Cloudfront Distribution and S3 bucket secured with OAC
-    const distributionResources = new CloudFrontToS3(this, "CloudFrontToS3", {
-      cloudFrontDistributionProps: {
-        defaultBehavior: {
-          viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-        },
-        domainNames: [props.domainName],
-        certificate: certificate,
-        priceClass: cloudfront.PriceClass.PRICE_CLASS_100,
-      }
+    const bucket = new s3.Bucket(this, "assetsBucket", {
+      blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
+      accessControl: s3.BucketAccessControl.PRIVATE,
+      enforceSSL: true
+    });
+
+    const bucketOrigin = origins.S3BucketOrigin.withOriginAccessControl(bucket);
+    const distribution = new cloudfront.Distribution(this, "cuckooDistribution", {
+      defaultBehavior: {
+        origin: bucketOrigin,
+        viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS
+      },
+      domainNames: [props.domainName],
+      certificate: certificate,
+      priceClass: cloudfront.PriceClass.PRICE_CLASS_100
     });
 
     // Allow navigation to subdirectories without including index.html paths
@@ -45,7 +50,8 @@ export class CuckooStack extends cdk.Stack {
       }),
       runtime: cloudfront.FunctionRuntime.JS_2_0,
     });
-    distributionResources.cloudFrontWebDistribution.addBehavior("/*", new origins.S3Origin(distributionResources.s3Bucket!), {
+
+    distribution.addBehavior("/*", bucketOrigin, {
       functionAssociations: [{
         function: rewriteIndexFunction,
         eventType: cloudfront.FunctionEventType.VIEWER_REQUEST,
@@ -55,20 +61,19 @@ export class CuckooStack extends cdk.Stack {
     // Deploy static site to S3
     new s3deploy.BucketDeployment(this, 'BucketDeploy', {
       sources: [s3deploy.Source.asset(props.assetDir)],
-      destinationBucket: distributionResources.s3Bucket!,
-      distribution: distributionResources.cloudFrontWebDistribution,
+      destinationBucket: bucket,
+      distribution: distribution,
       distributionPaths: ['/*']
     });
 
     // Update Route53 to point DNS name to CloudFront distribution
     new route53.ARecord(this, 'CloudFrontARecord', {
       zone: hostedZone,
-      target: route53.RecordTarget.fromAlias(new targets.CloudFrontTarget(distributionResources.cloudFrontWebDistribution))
+      target: route53.RecordTarget.fromAlias(new targets.CloudFrontTarget(distribution))
     });
-
     new route53.AaaaRecord(this, 'CloudFrontAaaaRecord', {
       zone: hostedZone,
-      target: route53.RecordTarget.fromAlias(new targets.CloudFrontTarget(distributionResources.cloudFrontWebDistribution))
+      target: route53.RecordTarget.fromAlias(new targets.CloudFrontTarget(distribution))
     });
   }
 }
