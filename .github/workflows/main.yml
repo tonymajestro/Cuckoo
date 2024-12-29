@@ -44,6 +44,6 @@ jobs:
         run: npm run build
       - name: cdk deploy
         working-directory: ./infra
-        run: npm run deploy
+        run: npm run deploygithub
       - name: Invalidate Cloudfront cache
         run: aws cloudfront create-invalidation --distribution-id E1ZGQQT8CIXP3A --paths '/*'

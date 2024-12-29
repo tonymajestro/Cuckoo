@@ -7,6 +7,7 @@
   "scripts": {
     "build": "tsc",
     "deploy": "cdk deploy",
+    "deploygithub": "cdk deploy --require-approval never",
     "precdk": "npm run build"
   },
   "devDependencies": {
