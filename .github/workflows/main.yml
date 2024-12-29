@@ -26,6 +26,7 @@ jobs:
         with:
           node-version: 20
       - name: Install cdk
+        working-directory: ./infra
         run: |
           npm ci
       - name: Configure aws credentials
@@ -34,7 +35,11 @@ jobs:
           role-to-assume: arn:aws:iam::968197501093:role/GitHubAction-AssumeRoleWithAction
           role-session-name: GitHub_to_AWS_via_FederatedOIDC
           aws-region: ${{ env.AWS_REGION }}
-      - name: deploy
-        run: just deploy
+      - name: build assets
+        working-directory: ./astro
+        run: npm run build
+      - name: cdk deploy
+        working-directory: ./infra
+        run: npm run deploy
       - name: Invalidate Cloudfront cache
         run: aws cloudfront create-invalidation --distribution-id E1ZGQQT8CIXP3A --paths '/*'
