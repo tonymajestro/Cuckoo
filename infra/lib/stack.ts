@@ -60,19 +60,15 @@ export class CuckooStack extends cdk.Stack {
       distributionPaths: ['/*']
     });
 
-    // Add Route53 alias records to map DNS name to CloudFront distribution
-    this.updateHostedZone(distributionResources.cloudFrontWebDistribution, hostedZone);
-  }
-
-  updateHostedZone(distribution: cloudfront.Distribution, hostedZone: route53.IHostedZone): void {
+    // Update Route53 to point DNS name to CloudFront distribution
     new route53.ARecord(this, 'CloudFrontARecord', {
       zone: hostedZone,
-      target: route53.RecordTarget.fromAlias(new targets.CloudFrontTarget(distribution))
+      target: route53.RecordTarget.fromAlias(new targets.CloudFrontTarget(distributionResources.cloudFrontWebDistribution))
     });
 
     new route53.AaaaRecord(this, 'CloudFrontAaaaRecord', {
       zone: hostedZone,
-      target: route53.RecordTarget.fromAlias(new targets.CloudFrontTarget(distribution))
+      target: route53.RecordTarget.fromAlias(new targets.CloudFrontTarget(distributionResources.cloudFrontWebDistribution))
     });
   }
 }
