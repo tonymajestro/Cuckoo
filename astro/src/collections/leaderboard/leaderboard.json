@@ -1,38 +1,38 @@
 [
   {
     "name": "Anthony",
-    "wins": 1,
-    "games": 4
+    "wins": 2,
+    "games": 5
   },
   {
     "name": "Sarah",
     "wins": 1,
-    "games": 3
+    "games": 4
   },
   {
     "name": "Jacob",
     "wins": 1,
-    "games": 2
+    "games": 3
   },
   {
     "name": "Parker",
     "wins": 1,
-    "games": 2
+    "games": 3
   },
   {
     "name": "Maddy",
     "wins": 0,
-    "games": 4
+    "games": 5
   },
   {
     "name": "Phil",
     "wins": 0,
-    "games": 4
+    "games": 5
   },
   {
     "name": "Rosie",
     "wins": 0,
-    "games": 4
+    "games": 5
   },
   {
     "name": "Spencer",
@@ -52,37 +52,37 @@
   {
     "name": "Nana",
     "wins": 0,
-    "games": 4
+    "games": 5
   },
   {
     "name": "Nono",
     "wins": 0,
-    "games": 4
+    "games": 5
   },
   {
     "name": "Tony",
     "wins": 0,
-    "games": 3
+    "games": 4
   },
   {
     "name": "Anna",
     "wins": 0,
-    "games": 3
+    "games": 4
   },
   {
     "name": "Conner",
     "wins": 0,
-    "games": 3
+    "games": 4
   },
   {
     "name": "Gina",
     "wins": 0,
-    "games": 2
+    "games": 3
   },
   {
     "name": "Gargi",
     "wins": 0,
-    "games": 2
+    "games": 3
   },
   {
     "name": "Joey",

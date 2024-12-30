@@ -1,6 +1,20 @@
 ---
 import Base from "../layouts/Base.astro";
 import scores from "../collections/leaderboard/leaderboard.json";
+
+scores.sort((a, b) => {
+  if (a.wins < b.wins) {
+    return 1;
+  } else {
+    if (a.wins != b.wins) {
+      return -1;
+    } else if (a.games < b.games) {
+      return 1;
+    } else {
+      return -1;
+    }
+  }
+});
 ---
 
 <Base title="Leaderboard">
