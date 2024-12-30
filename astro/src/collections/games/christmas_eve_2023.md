@@ -1,5 +1,5 @@
 ---
-title: Christmas Eve Party 2023
+title: Christmas Eve 2023
 layout: ../../layouts/Game.astro
 date: 2023-12-24
 dateString: December 24, 2023

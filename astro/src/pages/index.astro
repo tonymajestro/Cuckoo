@@ -3,7 +3,9 @@ import Base from "../layouts/Base.astro";
 import { getCollection } from "astro:content";
 
 const games = await getCollection("games");
-games.sort((left, right) => right.data.date - left.data.date);
+games.sort((left, right) => {
+  return left.data.date > right.data.date ? -1 : 1;
+});
 ---
 
 <Base title="Majestro Cuckoo">

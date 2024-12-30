@@ -18,19 +18,25 @@ const { title, dateString, winners, images } = game.data;
 <Base>
   <div class="pb-4">
     <h1 class="text-3xl text-neutral-700">{title}</h1>
-    <h2 class="text text-slate-700">{dateString}</h2>
+    <h2 class="text text-neutral-700">{dateString}</h2>
   </div>
 
   <div class="flex flex-col space-y-6">
     <section>
       <h3 class="text-xl font-semibold text-neutral-800 pb-3">Notes</h3>
-      <div class="text-slate-600">{game.body}</div>
+      <div class="text-neutral-700">{game.body}</div>
     </section>
 
     <section>
       <h3 class="text-xl font-semibold text-neutral-700 pb-3">Scores</h3>
       <ol class="list-decimal pl-6 text-gray-700">
-        {winners.map((winner) => <li>{winner}</li>)}
+        {
+          game.data.winners.map((winner, i) => (
+            <li>
+              {i == 0 && <strong>Winner:</strong>} {winner}
+            </li>
+          ))
+        }
       </ol>
     </section>
 
