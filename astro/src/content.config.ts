@@ -11,6 +11,7 @@ const games = defineCollection({
       dateString: z.string(),
       winners: z.array(z.string()),
       images: z.array(image()),
+      videos: z.array(z.string()).optional(),
     }),
 });
 

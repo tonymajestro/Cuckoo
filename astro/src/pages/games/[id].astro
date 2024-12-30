@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 }
 
 const { game } = Astro.props;
-const { title, dateString, winners, images } = game.data;
+const { title, dateString, winners, images, videos } = game.data;
 ---
 
 <Base>
@@ -31,7 +31,7 @@ const { title, dateString, winners, images } = game.data;
       <h3 class="text-xl font-semibold text-neutral-700 pb-3">Scores</h3>
       <ol class="list-decimal pl-6 text-gray-700">
         {
-          game.data.winners.map((winner, i) => (
+          winners.map((winner, i) => (
             <li>
               {i == 0 && <strong>Winner:</strong>} {winner}
             </li>
@@ -46,5 +46,20 @@ const { title, dateString, winners, images } = game.data;
         {images.map((image) => <Image src={image} alt={image.src} />)}
       </div>
     </section>
+
+    {
+      videos != undefined && videos.length > 0 && (
+        <section>
+          <h3 class="text-xl font-semibold text-neutral-700 pb-3">Videos</h3>
+          <div class="flex flex-col space-y-12">
+            {videos.map((url) => (
+              <video controls>
+                <source src={url} type="video/mp4" />
+              </video>
+            ))}
+          </div>
+        </section>
+      )
+    }
   </div>
 </Base>
